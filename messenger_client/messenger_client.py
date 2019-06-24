@@ -1,4 +1,3 @@
-#messenger_client.py
 import socket
 import threading
 import sys
@@ -458,14 +457,13 @@ def listen():
             elif(resp_type=="users"):
                 global online_users_list
                 online_users = resp["resp"]
-                print(online_users)
                 print_to_screen(1,bcolors.OKBLUE,"\nONLINE USERS : \n"+bcolors.ENDC)
                 users = ""
                 for i in online_users:
                     if(i==""):
                         continue
-                    users = users + str(i) + "\n"
-                print_to_screen(1,bcolors.OKGREEN,users)
+                    users = bcolors.OKGREEN + str(i)+bcolors.ENDC + "\n"
+                print_to_screen(1,bcolors.FAIL,users)
                 online_users_list = online_users
                 
                             
@@ -502,6 +500,18 @@ def handshake():
     else:
         return 0
 
+
+def manage_chat_threads():
+    while True:
+        try:
+            c1,a1 = server_sock.accept()
+            chat_thread = threading.Thread(target=start_chat_thread,args=(c1,a1))
+            chat_thread.daemon = True
+            chat_thread.start()
+        except KeyboardInterrupt:
+            print(bcolors.OKBLUE+"\nProgram terminated by the user, see you again :)"+bcolors.ENDC)
+            sys.exit(0)
+    
 
 def start_client():
     clear_screen()
@@ -576,15 +586,21 @@ def start_client():
     thr1.start()
     thr2.start()
     
+    
+    #there is no need to use a new thread here, instead manage_chat_threads can be directly run without starting a child thread. But, since the 
+    #keyboardinterrupt is not being caught properly in windows, I had to use a thread here, and then later handle keyboardinterrupt with an  
+    #infinite while loop that only stops when keyboardinterrupt is captured
+    
+    chat_thread_manager = threading.Thread(target=manage_chat_threads)
+    chat_thread_manager.daemon = True
+    chat_thread_manager.start()
+    
     while True:
         try:
-            c1,a1 = server_sock.accept()
-            chat_thread = threading.Thread(target=start_chat_thread,args=(c1,a1))
-            chat_thread.daemon = True
-            chat_thread.start()
+            time.sleep(2)
         except KeyboardInterrupt:
-            print(bcolors.OKBLUE+"\nProgram terminated by the user, see you again :)"+bcolors.ENDC)
-            sys.exit(0)
+            print(bcolors.FAIL+"Program terminated by user, see you again :("+bcolors.ENDC)
+            sys.exit()
             
             
 if __name__ == "__main__":
