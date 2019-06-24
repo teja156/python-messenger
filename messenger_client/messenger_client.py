@@ -1,3 +1,4 @@
+#messenger_client.py
 import socket
 import threading
 import sys
@@ -33,7 +34,6 @@ username = None
 server_sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 commands = {":login" : "Login to an existing account", ":register" : "Create an account",":chat" : "Chat with an online user",":showonline" : "Show online users", ":logout" : "Logout from the account",":quitchat":"Quit chat"}
 chats = dict()
-online_users_list = list()
 
 def print_to_screen(op,color,msg):
     lock = threading.Lock()
@@ -157,7 +157,6 @@ def login():
         cipher = encryption.encrypt(data_to_send,"serverkey.pem",publickey=None) #encrypt with server's public key
         signature = encryption.signature(data_to_send,"keypriv")
         outp = "{'cipher':'%s','signature':'%s'}"%(cipher,signature)
-        print("Sending : ",outp)
         sock.sendall(outp)
     except Exception as e:
         print(bcolors.FAIL+"An error occured :("+bcolors.ENDC)
@@ -309,25 +308,19 @@ def new_chat(platform,uname,msg,op):
 def startchat(op,rec_uname,msg):
     global chats
     if(rec_uname in chats):
+        print("chats : ",chats)
         c_destination = chats[rec_uname]
         c_destination.send(msg) #send message to chat window
         print("sent message to chat window")
         
     else:
         #open new chat window to show messages
-        show_online()
-        print_to_screen(1,bcolors.OKBLUE,"Please wait...")
-        time.sleep(3)
-        global online_users_list
-        
-        if(rec_uname in online_users_list):
-            sys_platform = platform.system()
-            thr = threading.Thread(target=new_chat,args=((sys_platform,rec_uname,msg,op)))
-            thr.daemon = True
-            thr.start()
-            print_to_screen(1,bcolors.OKBLUE,"Chat window opened!\n")
-        else:
-            print_to_screen(1,bcolors.FAIL,"User doesn't exist or is not online!")
+        sys_platform = platform.system()
+        thr = threading.Thread(target=new_chat,args=((sys_platform,rec_uname,msg,op)))
+        thr.daemon = True
+        thr.start()
+        print_to_screen(1,bcolors.OKBLUE,"Chat window opened!\n")
+  
         
     
 def start_chat_thread(c,a):
@@ -455,17 +448,14 @@ def listen():
                             print_to_screen(1,bcolors.FAIL,"Invalid option, please enter again.")  
             
             elif(resp_type=="users"):
-                global online_users_list
                 online_users = resp["resp"]
                 print_to_screen(1,bcolors.OKBLUE,"\nONLINE USERS : \n"+bcolors.ENDC)
                 users = ""
                 for i in online_users:
                     if(i==""):
                         continue
-                    users = bcolors.OKGREEN + str(i)+bcolors.ENDC + "\n"
+                    users = users + str(i) + "\n"
                 print_to_screen(1,bcolors.FAIL,users)
-                online_users_list = online_users
-                
                             
             elif(resp_type=="quitchat"):
                 uname = resp["resp"]
