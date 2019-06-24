@@ -71,8 +71,9 @@ Open your terminal as root, and run each following command one by one
 ```
 nohup messenger_server.py &
 ```
-2. Download the messenger_client folder to your computer and don't change the paths of any of the files
-Now, run the messenger_client.py by mentioning your server address as a sys arguement
+2. Download the messenger_client folder to your computer and don't change the paths of any of the files.
+
+Now, run the messenger_client.py by mentioning your server address as a sys argument
 ```
 python messenger_server.py 127.0.0.1
 ```
