@@ -54,6 +54,8 @@ NOTE : If you cannot install pycrypto with easy_install try installing with pip,
 
 ```easy_install pycrypto```
 
+```pip install pynput```
+
 
 
 -------------------------------------------------------------------------------
