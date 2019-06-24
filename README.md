@@ -48,7 +48,11 @@ Open your terminal as root, and run each following command one by one
 
 ```pip install pynput```
 
-NOTE : If you cannot install pycrypto with easy_install, try installing with pip
+NOTE : If you cannot install pycrypto with easy_install try installing with pip, if things are still not in track, try doing: 
+
+```pip uninstall pycrypto```
+
+```easy_install pycrypto```
 
 
 
@@ -61,9 +65,9 @@ Required modules - pynput,pyrcrypto
 
 Open your terminal as root, and run each following command one by one
 
-```easy_install pycrypto```
+```apt-get install autoconf g++ python2.7-dev```
 
-```pip install pynput```
+```pip install pycrypto```
 
 
 # Usage
