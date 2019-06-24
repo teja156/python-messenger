@@ -31,7 +31,6 @@ def on_press(key):
 def on_release(key):
     try:
         if key==key.ctrl or key==key.ctrl_l or key==key.ctrl_r:
-            print("Ctrl pressed")
             global taking_input
             if(taking_input==False):
                 res = sendmessage()
