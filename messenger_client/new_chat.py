@@ -53,7 +53,9 @@ def hotkey():
 def new_chat(op,rec_uname,msg):
     print(bcolors.OKGREEN+"Chatting with %s\n"%rec_uname+bcolors.ENDC)
     print(bcolors.OKBLUE+"To write a message, press Ctrl. After writing, hit Enter to send it"+bcolors.ENDC)
+    
     print(bcolors.OKBLUE+"Type :quitchat to quit the chat.\n"+bcolors.ENDC)
+    print(bcolors.WARNING+"Warning : Chat windows can open even if the user is not online, watch the main window to see if the user is online or not.\n"+bcolors.ENDC)
     
     op = int(op)
     if(op==1):
