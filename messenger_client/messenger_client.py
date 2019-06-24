@@ -458,13 +458,14 @@ def listen():
             elif(resp_type=="users"):
                 global online_users_list
                 online_users = resp["resp"]
+                print(online_users)
                 print_to_screen(1,bcolors.OKBLUE,"\nONLINE USERS : \n"+bcolors.ENDC)
                 users = ""
                 for i in online_users:
                     if(i==""):
                         continue
-                    users = bcolors.OKGREEN + str(i)+bcolors.ENDC + "\n"
-                print_to_screen(1,bcolors.FAIL,users)
+                    users = users + str(i) + "\n"
+                print_to_screen(1,bcolors.OKGREEN,users)
                 online_users_list = online_users
                 
                             
