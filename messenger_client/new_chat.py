@@ -4,6 +4,7 @@ import sys
 import socket
 import threading
 import os
+import time
 
 if os.name=="nt":
     import keyboard
@@ -73,12 +74,12 @@ def sendmessage():
     global taking_input
     taking_input = True
     inp = raw_input(bcolors.OKBLUE+"Write your message now\n"+bcolors.ENDC)
+    inp.replace("'"," ")
+    inp.replace(":"," ")
+    inp.replace('"',' ')
     if(inp=="" or inp==None):
         print("No message sent")
     elif(inp==":quitchat"):
-        inp.replace("'"," ")
-        inp.replace(":"," ")
-        inp.replace('"',' ')
         print(bcolors.OKBLUE+"Quitting chat...")
         sock.send(":quitchat")
         sock.close()
@@ -110,6 +111,7 @@ def listen():
             
         if(data.encode("utf-8")==":quitchat"):
             print("\n"+bcolors.OKBLUE+recepient_username+" has left the chat!"+bcolors.ENDC)
+            time.sleep(2)
             sock.close()
             sys.exit(0)
         
