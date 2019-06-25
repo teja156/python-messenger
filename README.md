@@ -27,7 +27,11 @@ Required modules - pycrypto,keyboard
 
 Open your cmd as administrator and run each following command one by one
 
+For Windows 32-bit : 
 ```easy_install http://www.voidspace.org.uk/python/pycrypto-2.6.1/pycrypto-2.6.1.win32-py2.7.exe```
+
+For Windows 64-bit : 
+```easy_install http://www.voidspace.org.uk/python/pycrypto-2.6.1/pycrypto-2.6.1.win-amd64-py2.7.exe```
 
 ```pip install keyboard```
 
