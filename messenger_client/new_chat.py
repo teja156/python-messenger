@@ -36,7 +36,7 @@ def on_release(key):
             if(taking_input==False):
                 res = sendmessage()
             if(taking_input==True):
-                print("Already taking input...")
+                pass
             if(res==1):
                 return False
     except:
