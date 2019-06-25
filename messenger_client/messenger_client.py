@@ -308,10 +308,8 @@ def new_chat(platform,uname,msg,op):
 def startchat(op,rec_uname,msg):
     global chats
     if(rec_uname in chats):
-        print("chats : ",chats)
         c_destination = chats[rec_uname]
         c_destination.send(msg) #send message to chat window
-        print("sent message to chat window")
         
     else:
         #open new chat window to show messages
