@@ -75,7 +75,7 @@ Open your terminal as root, and run each following command one by one
 # Usage
 1. Run the server on your cloud or your local computer(if you are just testing it)
 ```
-nohup messenger_server.py &
+nohup python messenger_server.py &
 ```
 2. Download the messenger_client folder to your computer and don't change the paths of any of the files.
 
