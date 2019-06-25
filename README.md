@@ -20,6 +20,7 @@ The encryption features for this messenger are :
 I tried to bundle all the required modules into a requirements.txt but I failed because some modules need some special attention to be installed on your computer, and they also depend on the OS you're using. So please don't hate me.
 Find your operating system below and follow the instructions mentioned.
 
+## Client
 -------------------------------------------------------------------------------
 
 WINDOWS : 
