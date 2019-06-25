@@ -75,6 +75,15 @@ Open your terminal as root, and run each following command one by one
 
 ```pip install pycrypto```
 
+```pip install pynput```
+
+## Server
+Required modules - pycrypto
+Open your terminal as root and execute the following commands
+
+```apt-get install autoconf g++ python2.7-dev```
+
+```pip install pycrypto```
 
 # Usage
 1. Run the server on your cloud or your local computer(if you are just testing it)
