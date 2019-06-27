@@ -62,7 +62,7 @@ def show_commands_menu():
             continue
         print(bcolors.OKGREEN+i+" --> "+bcolors.BOLD+commands[i]+bcolors.ENDC)
     
-    print(bcolors.OKGREEN+"Hold Ctrl+C (on linux, mac) or Ctrl+Break (on windows) to terminate the program anytime you want.\n"+bcolors.ENDC)
+    print(bcolors.OKGREEN+"Hold Ctrl+C to terminate the program anytime you want.\n"+bcolors.ENDC)
         
 
 def show_online():
